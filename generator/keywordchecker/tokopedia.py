@@ -26,6 +26,8 @@ VALID_SALDO_KEYWORD = [
 ]
 
 VALID_TRANSAKSI_KEYWORD = [
+    'Transaksi selesai..\nDana akan diteruskan ke penjual.',  # v1
+
     'Pesanan Diproses',
     'Menunggu Pickup',
     'Pesanan Dikirim',
