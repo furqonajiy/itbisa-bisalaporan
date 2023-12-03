@@ -18,6 +18,6 @@ def generate_report_list(show):
     if show:
         logging.debug("List Report:")
         for report in list_report:
-            logging.debug(report)
+            logging.info(report)
 
     return list_report
