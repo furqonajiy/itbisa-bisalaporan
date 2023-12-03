@@ -17,32 +17,12 @@ def process(list_report):
     create_directory(BISALAPORAN_TOKOPEDIA_DIR)
 
     for tkp_file in list_report:
-        read_bisatransaksi_v1(tkp_file)
-        read_bisatransaksi_v2(tkp_file)
+        read_bisatransaksi(tkp_file)
 
     for tkp_file in list_report:
-        read_bisasaldo_v2(tkp_file)
+        read_bisasaldo(tkp_file)
 
-def read_bisatransaksi_v1(tkp_file):
-    cond1 = 'BisaTransaksi v1 Tokopedia' in tkp_file
-    cond2 = '~' not in tkp_file
-    if cond1 and cond2:
-        logging.debug("Read {0}".format(tkp_file))
-
-        df = pd.read_excel(tkp_file, skiprows=3)
-        df['Invoice'].fillna(method='ffill', inplace=True)
-        df['Order Status'].fillna(method='ffill', inplace=True)
-
-        # Remove rows with invalid status
-        search_values = ['Dibatalkan']
-        df = df[~df['Order Status'].str.contains('|'.join(search_values))]
-
-        if len(df) > 0:
-            check_status_keyword(tkp_file, df)
-            generate_bisainvoice(tkp_file, df)
-            generate_bisajual(tkp_file, df)
-
-def read_bisatransaksi_v2(tkp_file):
+def read_bisatransaksi(tkp_file):
     cond1 = 'BisaTransaksi v2 Tokopedia' in tkp_file
     cond2 = '~' not in tkp_file
     if cond1 and cond2:
@@ -60,7 +40,7 @@ def read_bisatransaksi_v2(tkp_file):
             generate_bisajual(tkp_file, df)
 
 
-def read_bisasaldo_v2(tkp_file):
+def read_bisasaldo(tkp_file):
     cond1 = 'BisaSaldo v2 Tokopedia' in tkp_file
     cond2 = '~' not in tkp_file
     if cond1 and cond2:
