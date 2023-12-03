@@ -9,10 +9,6 @@ from utility.sku import standardize_sku
 def generate_bisajual(tkp_file, df):
     logging.info("Generate BisaJual from {0} ({1} rows)".format(tkp_file, len(df)))
 
-    # Fill Blank Nomor Invoice and Status Terakhir
-    df['Nomor Invoice'].fillna(method='ffill', inplace=True)
-    df['Status Terakhir'].fillna(method='ffill', inplace=True)
-
     # Assign Omzet as Jumlah Produk Dibeli multiply with Price
     df['Omzet'] = (df['Jumlah Produk Dibeli'] * df['Harga Jual (IDR)'].astype(str)
                    .str.replace('Rp ', '')
