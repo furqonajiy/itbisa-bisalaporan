@@ -2,7 +2,7 @@ import logging
 
 import pandas as pd
 
-from bisainvoice.tokopedia import generate_bisainvoice
+from bisainvoice.tokopedia.v1 import generate_bisainvoice
 from bisajual.tokopedia import generate_bisajual
 from keywordchecker.tokopedia import check_status_keyword
 from utility.constant import BISALAPORAN_TOKOPEDIA_DIR
