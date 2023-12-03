@@ -55,9 +55,12 @@ def check_saldo_keyword(tkp_file, df):
     handle_invalid_keywords('BisaSaldo', tkp_file, invalid_rows)
 
 
-def check_status_keyword(tkp_file, df):
+def check_status_keyword(version, tkp_file, df):
     logging.debug("Check BisaTransaksi Keyword in {0}".format(tkp_file))
 
-    invalid_rows = df[~df['Status Terakhir'].isin(VALID_TRANSAKSI_KEYWORD)]
+    if version == "1":
+        invalid_rows = df[~df['Order Status'].isin(VALID_TRANSAKSI_KEYWORD)]
+    elif version == "2":
+        invalid_rows = df[~df['Status Terakhir'].isin(VALID_TRANSAKSI_KEYWORD)]
 
     handle_invalid_keywords('BisaTransaksi', tkp_file, invalid_rows)

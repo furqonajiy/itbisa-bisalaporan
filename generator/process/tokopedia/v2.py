@@ -22,6 +22,7 @@ def process(list_report):
     for tkp_file in list_report:
         read_bisasaldo(tkp_file)
 
+
 def read_bisatransaksi(tkp_file):
     cond1 = 'BisaTransaksi v2 Tokopedia' in tkp_file
     cond2 = '~' not in tkp_file
