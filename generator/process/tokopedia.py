@@ -29,11 +29,11 @@ def read_bisatransaksi_v1(tkp_file):
     if cond1 and cond2:
         logging.debug("Read {0}".format(tkp_file))
 
-        df = pd.read_excel(tkp_file, skiprows=4)
+        df = pd.read_excel(tkp_file, skiprows=3)
 
         # Remove rows with invalid status
         search_values = ['Dibatalkan']
-        df = df[~df['Status Terakhir'].str.contains('|'.join(search_values))]
+        df = df[~df['Order Status'].str.contains('|'.join(search_values))]
 
         if len(df) > 0:
             check_status_keyword(tkp_file, df)
