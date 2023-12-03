@@ -30,6 +30,8 @@ def read_bisatransaksi_v1(tkp_file):
         logging.debug("Read {0}".format(tkp_file))
 
         df = pd.read_excel(tkp_file, skiprows=3)
+        df['Invoice'].fillna(method='ffill', inplace=True)
+        df['Order Status'].fillna(method='ffill', inplace=True)
 
         # Remove rows with invalid status
         search_values = ['Dibatalkan']
